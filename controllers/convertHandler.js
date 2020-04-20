@@ -8,16 +8,24 @@
 
 function ConvertHandler() {
   
+  // slip the imput string to get the number
   this.getNum = function(input) {
     var result;
-    
     return result;
   };
   
   this.getUnit = function(input) {
-    var result;
-    
-    return result;
+    // Split a string using :
+    // any number as delimiter
+    // any dot as delimiter
+    // any slash as delimiter
+    let [unit] = input.split(/[\d./]/gi).reverse()
+    // transform unit string to lower case
+    unit = unit.toLowerCase()
+    // check if unit is a valid unit
+    const isValidUnit = ['gal','l','mi','km','lbs','kg'].includes(unit)
+    if (isValidUnit) return unit
+    return false
   };
   
   this.getReturnUnit = function(initUnit) {
