@@ -8,8 +8,12 @@ var cors        = require('cors');
 var apiRoutes         = require('./routes/api.js');
 var fccTestingRoutes  = require('./routes/fcctesting.js');
 var runner            = require('./test-runner');
+const helmet          = require("helmet")
 
 var app = express();
+
+app.use(helmet.noSniff()) // Avoid inferring the response MIME type
+app.use(helmet.xssFilter()) // Mitigate the risk of XSS
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
