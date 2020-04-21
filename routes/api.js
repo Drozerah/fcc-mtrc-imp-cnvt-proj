@@ -21,12 +21,12 @@ module.exports = function (app) {
       // check request query parameter
       if (!( _.isEmpty(req.query) === false && Object.keys(req.query)[0] == 'input')) {
 
-        console.log(`[GET][${req.url}]\n~~>[400][Bad Request]`) // !DEBUG
+        if(!process.env === 'test') console.log(`[GET][${req.url}]\n~~>[400][Bad Request]`) // !DEBUG
         res.status(400).json('400 - Bad Request')
 
       } else {
 
-        console.log(`[GET][${req.url}]\n~~>[200][valid '${Object.keys(req.query)[0]}' search param]`) // !DEBUG
+        if(!process.env === 'test') console.log(`[GET][${req.url}]\n~~>[200][valid '${Object.keys(req.query)[0]}' search param]`) // !DEBUG
         
         const input = req.query.input
         const initNum = convertHandler.getNum(input)
@@ -35,19 +35,36 @@ module.exports = function (app) {
         // const returnUnit = convertHandler.getReturnUnit(initUnit)
         // const toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
         
-        // TODO
-        // [X] check if initNum is valid then return 'invalid number' or go to to happy path
-        // [X] implement unit test for initNum method
-        // [x] check if initUnit is valid returns 'invalid unit' or go to happy path
-        // [x] implement unit test for initUnit method
+        // TODO - convertHandler methods implementation
+        // [x] initNum
+        // [x] initUnit
+        // [ ] returnNum
+        // [ ] returnUnit
+        // [ ] toString
+        // TODO - unit tests implementation
+        // [x] initNum
+        // [x] initUnit
+        // [ ] returnNum
+        // [ ] returnUnit
+        // [ ] toString
+        // TODO - functional tests implementation
+        // [ ] inplement functional test 1
+        // [x] inplement functional test 2
+        // [x] inplement functional test 3
+        // [x] inplement functional test 4
+        // [ ] inplement functional test 5
 
-        if (!initUnit) {
-          res.status(400).json('invalid unit')
+        if(initUnit === false && initNum === false){
+          if(!process.env === 'test') console.log('[invalid number and unit]') // !DEBUG
+          res.json('invalid number and unit')
+        } else if (!initUnit) {
+          if(!process.env === 'test') console.log('[invalid unit]') // !DEBUG
+          res.json('invalid unit')
         } else if (!initNum) {
-          res.status(200).json('invalid number')
+          if(!process.env === 'test') console.log('[invalid numger]') // !DEBUG
+          res.json('invalid number')
         } else {
-          console.log(`initNum ${initNum}`) // !DEBUG
-          console.log(`initUnit ${initUnit}`) // !DEBUG
+          if(!process.env === 'test') console.log('happy path') // !DEBUG
           res.status(200).json('happy path')
         }
       }

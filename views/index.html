@@ -40,6 +40,10 @@
       <code>/api/convert?input=kg</code><br>
       <h3>Example return:</h3>
       <code>{initNum: 3.1, initUnit: 'mi', returnNum: 5.0000008, returnUnit: 'km', string: '3.1 miles converts to 5.00002 kilometers'}</code>
+      <h3>Example errors:</h3>
+      <code>/api/convert?input=32g &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@return 'invalid unit'</code><br>
+      <code>/api/convert?input=3/7.2/4kg&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@return 'invalid number'</code><br>
+      <code>/api/convert?input=3/7.2/4kilomegagram&nbsp;&nbsp;&nbsp;@return 'invalid number and unit'</code><br>
     </div>
     <hr style='margin: 50px'>
     <div id='testui' style='margin-left: 5%'>

@@ -7,6 +7,7 @@
 */
 const math = require("mathjs")
 function ConvertHandler() {
+  
   this.getNum = function(input) {
     // Split a string using :
     // any alpha characters as delimiter
