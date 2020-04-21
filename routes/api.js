@@ -32,9 +32,8 @@ module.exports = function (app) {
         const initNum = convertHandler.getNum(input)
         const initUnit = convertHandler.getUnit(input)
         // const returnNum = convertHandler.convert(initNum, initUnit)
-        const spellOutUnit = convertHandler.spellOutUnit(initUnit)
         const returnUnit = convertHandler.getReturnUnit(initUnit)
-        // const toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
+        const toString = convertHandler.getString(initNum, initUnit, 'returnNum', returnUnit)
         
         // TODO - convertHandler methods implementation
         // [x] initNum
@@ -42,14 +41,14 @@ module.exports = function (app) {
         // [ ] returnNum
         // [x] getReturnUnit
         // [x] spellOutUnit
-        // [ ] toString
+        // [x] getString
         // TODO - unit tests implementation
         // [x] initNum
         // [x] initUnit
         // [ ] returnNum
         // [x] getReturnUnit
         // [x] spellOutUnit
-        // [ ] toString
+        // [x] getString
         // TODO - functional tests implementation
         // [ ] inplement functional test 1
         // [x] inplement functional test 2
@@ -68,15 +67,15 @@ module.exports = function (app) {
           res.json('invalid number')
         } else {
           if(!process.env === 'development') console.log('happy path') // !DEBUG
-          const response = {
-            initNum,
-            initUnit,
-            returnNum: 'TODO',
-            returnUnit,
-            string: 'TODO',
-            spellOutUnit
-          }
-          res.status(200).json(response)
+          // const response = {
+          //   initNum,
+          //   initUnit,
+          //   returnNum: 'TODO',
+          //   returnUnit,
+          //   string: 'TODO',
+          //   spellOutUnit
+          // }
+          res.status(200).json(toString)
         }
       }
     }) 

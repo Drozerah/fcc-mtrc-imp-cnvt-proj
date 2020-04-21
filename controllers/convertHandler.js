@@ -53,17 +53,17 @@ function ConvertHandler() {
   this.spellOutUnit = function(unit) {
 
     switch (true) {
-      case unit === 'mi':
+      case unit == 'mi':
         return 'miles'
-      case unit === 'km':
+      case unit == 'km':
         return 'kilometers'
-      case unit === 'lbs':
+      case unit == 'lbs':
         return 'pounds'
-      case unit === 'kg':
+      case unit == 'kg':
         return 'kilograms'
-      case unit === 'gal':
+      case unit == 'gal':
         return 'gallons'
-      case unit === 'l':
+      case unit == 'l':
         return 'liters'
     }
   };
@@ -78,9 +78,14 @@ function ConvertHandler() {
   };
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    var result;
-    
-    return result;
+    const response = {
+      initNum,
+      initUnit,
+      returnNum,
+      returnUnit,
+      string: `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`,
+    }
+    return response
   };
   
 }
