@@ -20,11 +20,12 @@ module.exports = function (app) {
     .get(function (req, res){
       // check request query parameter
       if (!( _.isEmpty(req.query) === false && Object.keys(req.query)[0] == 'input')) {
+
         console.log(`[GET][${req.url}]\n~~>[400][Bad Request]`) // !DEBUG
         res.status(400).json('400 - Bad Request')
+
       } else {
-        console.log(typeof req.query.input) // !DEBUG
-        console.log(req.query.input.length) // !DEBUG
+
         console.log(`[GET][${req.url}]\n~~>[200][valid '${Object.keys(req.query)[0]}' search param]`) // !DEBUG
         
         const input = req.query.input
@@ -36,6 +37,7 @@ module.exports = function (app) {
         
         // TODO
         // [x] check if initUnit is valid returns 'invalid unit' or go to happy path
+        // [x] implement unit test for initUnit method
         // [ ] check if initNum is valid then return 'invalid number' or go to to happy path
 
         if (!initUnit) {
