@@ -21,31 +21,31 @@ module.exports = function (app) {
       // check request query parameter
       if (!( _.isEmpty(req.query) === false && Object.keys(req.query)[0] == 'input')) {
 
-        if(!process.env === 'test') console.log(`[GET][${req.url}]\n~~>[400][Bad Request]`) // !DEBUG
+        if(!process.env === 'development') console.log(`[GET][${req.url}]\n~~>[400][Bad Request]`) // !DEBUG
         res.status(400).json('400 - Bad Request')
 
       } else {
 
-        if(!process.env === 'test') console.log(`[GET][${req.url}]\n~~>[200][valid '${Object.keys(req.query)[0]}' search param]`) // !DEBUG
+        if(!process.env === 'development') console.log(`[GET][${req.url}]\n~~>[200][valid '${Object.keys(req.query)[0]}' search param]`) // !DEBUG
         
         const input = req.query.input
         const initNum = convertHandler.getNum(input)
         const initUnit = convertHandler.getUnit(input)
         // const returnNum = convertHandler.convert(initNum, initUnit)
-        // const returnUnit = convertHandler.getReturnUnit(initUnit)
+        const returnUnit = convertHandler.getReturnUnit(initUnit)
         // const toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
         
         // TODO - convertHandler methods implementation
         // [x] initNum
         // [x] initUnit
         // [ ] returnNum
-        // [ ] returnUnit
+        // [x] getReturnUnit
         // [ ] toString
         // TODO - unit tests implementation
         // [x] initNum
         // [x] initUnit
         // [ ] returnNum
-        // [ ] returnUnit
+        // [x] getReturnUnit
         // [ ] toString
         // TODO - functional tests implementation
         // [ ] inplement functional test 1
@@ -55,17 +55,24 @@ module.exports = function (app) {
         // [ ] inplement functional test 5
 
         if(initUnit === false && initNum === false){
-          if(!process.env === 'test') console.log('[invalid number and unit]') // !DEBUG
+          if(!process.env === 'development') console.log('[invalid number and unit]') // !DEBUG
           res.json('invalid number and unit')
         } else if (!initUnit) {
-          if(!process.env === 'test') console.log('[invalid unit]') // !DEBUG
+          if(!process.env === 'development') console.log('[invalid unit]') // !DEBUG
           res.json('invalid unit')
         } else if (!initNum) {
-          if(!process.env === 'test') console.log('[invalid numger]') // !DEBUG
+          if(!process.env === 'development') console.log('[invalid numger]') // !DEBUG
           res.json('invalid number')
         } else {
-          if(!process.env === 'test') console.log('happy path') // !DEBUG
-          res.status(200).json('happy path')
+          if(!process.env === 'development') console.log('happy path') // !DEBUG
+          const response = {
+            initNum,
+            initUnit,
+            returnNum: 'TODO',
+            returnUnit,
+            string: 'TODO'
+          }
+          res.status(200).json(response)
         }
       }
     }) 

@@ -7,7 +7,7 @@
 */
 const math = require("mathjs")
 function ConvertHandler() {
-  
+
   this.getNum = function(input) {
     // Split a string using :
     // any alpha characters as delimiter
@@ -33,9 +33,21 @@ function ConvertHandler() {
   };
   
   this.getReturnUnit = function(initUnit) {
-    var result;
-    
-    return result;
+
+    switch (true) {
+      case initUnit === 'mi':
+        return 'km'
+      case initUnit === 'km':
+        return 'mi'
+      case initUnit === 'lbs':
+        return 'kg'
+      case initUnit === 'kg':
+        return 'lbs'
+      case initUnit === 'gal':
+        return 'l'
+      case initUnit === 'l':
+        return 'gal'
+    }
   };
 
   this.spellOutUnit = function(unit) {
