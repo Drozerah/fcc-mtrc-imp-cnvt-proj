@@ -32,6 +32,7 @@ module.exports = function (app) {
         const initNum = convertHandler.getNum(input)
         const initUnit = convertHandler.getUnit(input)
         // const returnNum = convertHandler.convert(initNum, initUnit)
+        const spellOutUnit = convertHandler.spellOutUnit(initUnit)
         const returnUnit = convertHandler.getReturnUnit(initUnit)
         // const toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
         
@@ -40,12 +41,14 @@ module.exports = function (app) {
         // [x] initUnit
         // [ ] returnNum
         // [x] getReturnUnit
+        // [x] spellOutUnit
         // [ ] toString
         // TODO - unit tests implementation
         // [x] initNum
         // [x] initUnit
         // [ ] returnNum
         // [x] getReturnUnit
+        // [x] spellOutUnit
         // [ ] toString
         // TODO - functional tests implementation
         // [ ] inplement functional test 1
@@ -70,7 +73,8 @@ module.exports = function (app) {
             initUnit,
             returnNum: 'TODO',
             returnUnit,
-            string: 'TODO'
+            string: 'TODO',
+            spellOutUnit
           }
           res.status(200).json(response)
         }
