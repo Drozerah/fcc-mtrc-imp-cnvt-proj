@@ -14,40 +14,60 @@ var convertHandler = new ConvertHandler();
 
 suite('Unit Tests', function(){
   
-  // suite('Function convertHandler.getNum(input)', function() {
+  suite('Function convertHandler.getNum(input)', function() {
     
-  //   test('Whole number input', function(done) {
-  //     var input = '32L';
-  //     assert.equal(convertHandler.getNum(input),32);
-  //     done();
-  //   });
+    test('Whole number input', function(done) {
+      var input = '32L';
+      assert.equal(convertHandler.getNum(input),32);
+      done();
+    });
     
-  //   test('Decimal Input', function(done) {
+    test('Decimal Input', function(done) {
       
-  //     //done();
-  //   });
+      var input = ['0.5L', '3kg']
+      const compare = [0.5, 3]
+      input.forEach(function(ele, idx) {
+        assert.equal(convertHandler.getNum(ele), compare[idx])
+      });
+      done();
+    });
     
-  //   test('Fractional Input', function(done) {
+    test('Fractional Input', function(done) {
       
-  //     //done();
-  //   });
+      var input = ['1/2kg', '6/2kg']
+      const compare = [0.5, 3]
+      input.forEach(function(ele, idx) {
+        assert.equal(convertHandler.getNum(ele), compare[idx])
+      });
+      done();
+    });
     
-  //   test('Fractional Input w/ Decimal', function(done) {
-      
-  //     //done();
-  //   });
+    test('Fractional Input w/ Decimal', function(done) {
+      var input = ['5.5/100kg', '5.4/3lbs']
+      const compare = [0.055, 1.8]
+      input.forEach(function(ele, idx) {
+        assert.equal(convertHandler.getNum(ele), compare[idx])
+      });
+      done();
+    });
     
-  //   test('Invalid Input (double fraction)', function(done) {
-      
-  //     //done();
-  //   });
+    test('Invalid Input (double fraction)', function(done) {
+      var input = ['1/2/3kg', '1/2.5/3lbs', '1.2/2.5/3km', '1.2/2.5/3.5gal' ]
+      input.forEach(function(ele) {
+        assert.isFalse(convertHandler.getNum(ele))
+      });
+      done();
+    });
     
-  //   test('No Numerical Input', function(done) {
-      
-  //     //done();
-  //   }); 
+    test('No Numerical Input', function(done) {
+      var input = ['', 'foo']
+      input.forEach(function(ele) {
+        assert.equal(convertHandler.getNum(ele), 1)
+      });
+      done();
+    }); 
     
-  // });
+  });
   
   suite('Function convertHandler.getUnit(input)', function() {
     

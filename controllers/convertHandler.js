@@ -5,13 +5,16 @@
 *       
 *       
 */
-
+const math = require("mathjs")
 function ConvertHandler() {
-  
-  // slip the imput string to get the number
   this.getNum = function(input) {
-    var result;
-    return result;
+    // Split a string using :
+    // any alpha characters as delimiter
+    let [num] = input.split(/[A-Za-z]/)
+    if(num === '') num = '1'
+    const regex = /(^\d+$)|(^\d+\.?\d+$)|(^\d+\/?\d$)|(^\d+\.?\d+\/?\d+$)|(^\d+\/?\d+\.?\d+$)|(^\d+\.?\d+\/?\d+\.?\d+$)/
+    if(regex.test(num)) return math.evaluate(num)
+    return false
   };
   
   this.getUnit = function(input) {

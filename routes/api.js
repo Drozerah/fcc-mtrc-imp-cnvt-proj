@@ -29,20 +29,25 @@ module.exports = function (app) {
         console.log(`[GET][${req.url}]\n~~>[200][valid '${Object.keys(req.query)[0]}' search param]`) // !DEBUG
         
         const input = req.query.input
-        // const initNum = convertHandler.getNum(input)
+        const initNum = convertHandler.getNum(input)
         const initUnit = convertHandler.getUnit(input)
         // const returnNum = convertHandler.convert(initNum, initUnit)
         // const returnUnit = convertHandler.getReturnUnit(initUnit)
         // const toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
         
         // TODO
+        // [X] check if initNum is valid then return 'invalid number' or go to to happy path
+        // [X] implement unit test for initNum method
         // [x] check if initUnit is valid returns 'invalid unit' or go to happy path
         // [x] implement unit test for initUnit method
-        // [ ] check if initNum is valid then return 'invalid number' or go to to happy path
 
         if (!initUnit) {
           res.status(400).json('invalid unit')
+        } else if (!initNum) {
+          res.status(200).json('invalid number')
         } else {
+          console.log(`initNum ${initNum}`) // !DEBUG
+          console.log(`initUnit ${initUnit}`) // !DEBUG
           res.status(200).json('happy path')
         }
       }
