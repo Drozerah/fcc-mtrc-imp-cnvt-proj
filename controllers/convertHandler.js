@@ -33,7 +33,6 @@ function ConvertHandler() {
   };
   
   this.getReturnUnit = function(initUnit) {
-
     switch (true) {
       case initUnit === 'mi':
         return 'km'
@@ -51,36 +50,56 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function(unit) {
-
-    switch (true) {
-      case unit == 'mi':
+    switch (unit) {
+      case 'mi':
         return 'miles'
-      case unit == 'km':
+      case 'km':
         return 'kilometers'
-      case unit == 'lbs':
+      case 'lbs':
         return 'pounds'
-      case unit == 'kg':
+      case 'kg':
         return 'kilograms'
-      case unit == 'gal':
+      case 'gal':
         return 'gallons'
-      case unit == 'l':
+      case 'l':
         return 'liters'
     }
   };
   
   this.convert = function(initNum, initUnit) {
-    const galToL = 3.78541;
-    const lbsToKg = 0.453592;
-    const miToKm = 1.60934;
-    var result;
+  
+    const volume = 3.78541;
+    const weigth = 0.453592;
+    const distance = 1.60934;
     
-    return result;
-  };
+    const calculate = (initNum, operator, rate) => {
+      if (operator === '*') {
+        return math.round(math.evaluate(initNum * rate), 5) 
+      }
+      if (operator === '/') {
+        return math.round(math.evaluate(initNum / rate), 5)
+      }
+    }
+    switch (initUnit) {
+      case 'gal':
+         return calculate(initNum, '*', volume)   
+      case 'l':
+         return calculate(initNum, '/', volume)   
+      case 'lbs':
+         return calculate(initNum, '*', weigth)   
+      case 'kg':
+         return calculate(initNum, '/', weigth) 
+      case 'mi':
+         return calculate(initNum, '*', distance)
+      case 'km':
+         return calculate(initNum, '/', distance)
+    }
+  }
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     const response = {
       initNum,
-      initUnit,
+      initUnit: initUnit === 'l' ? 'L' : initUnit,
       returnNum,
       returnUnit,
       string: `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`,
