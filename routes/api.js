@@ -31,14 +31,14 @@ module.exports = function (app) {
         const input = req.query.input
         const initNum = convertHandler.getNum(input)
         const initUnit = convertHandler.getUnit(input)
-        // const returnNum = convertHandler.convert(initNum, initUnit)
+        const returnNum = convertHandler.convert(initNum, initUnit)
         const returnUnit = convertHandler.getReturnUnit(initUnit)
-        const toString = convertHandler.getString(initNum, initUnit, 'returnNum', returnUnit)
+        const toString = convertHandler.getString(initNum, initUnit, returnNum, returnUnit)
         
         // TODO - convertHandler methods implementation
         // [x] initNum
         // [x] initUnit
-        // [ ] returnNum
+        // [x] returnNum
         // [x] getReturnUnit
         // [x] spellOutUnit
         // [x] getString
@@ -67,14 +67,6 @@ module.exports = function (app) {
           res.json('invalid number')
         } else {
           if(!process.env === 'development') console.log('happy path') // !DEBUG
-          // const response = {
-          //   initNum,
-          //   initUnit,
-          //   returnNum: 'TODO',
-          //   returnUnit,
-          //   string: 'TODO',
-          //   spellOutUnit
-          // }
           res.status(200).json(toString)
         }
       }
