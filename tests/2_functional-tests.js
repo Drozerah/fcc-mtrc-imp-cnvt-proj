@@ -20,21 +20,21 @@ suite('Functional Tests', function () {
     suite('GET /api/convert => conversion object', function () {
 
       // 1
-      // test('Convert 10L (valid input)', function (done) {
-      //   chai.request(server)
-      //     .get('/api/convert')
-      //     .query({
-      //       input: '10L'
-      //     })
-      //     .end(function (err, res) {
-      //       assert.equal(res.status, 200);
-      //       assert.equal(res.body.initNum, 10);
-      //       assert.equal(res.body.initUnit, 'L');
-      //       assert.approximately(res.body.returnNum, 2.64172, 0.1);
-      //       assert.equal(res.body.returnUnit, 'gal');
-      //       done();
-      //     });
-      // });
+      test('Convert 10L (valid input)', function (done) {
+        chai.request(server)
+          .get('/api/convert')
+          .query({
+            input: '10L'
+          })
+          .end(function (err, res) {
+            assert.equal(res.status, 200);
+            assert.equal(res.body.initNum, 10);
+            assert.equal(res.body.initUnit, 'L');
+            assert.approximately(res.body.returnNum, 2.64172, 0.1);
+            assert.equal(res.body.returnUnit, 'gal');
+            done();
+          });
+      });
 
       // 2
       test('Convert 32g (invalid input unit)', function (done) {
@@ -76,10 +76,21 @@ suite('Functional Tests', function () {
           });
       });
       // 5
-      // test('Convert kg (no number)', function (done) {
-
-      //   //done();
-      // });
+      test('Convert kg (no number)', function (done) {
+        chai.request(server)
+          .get('/api/convert')
+          .query({
+            input: 'kg'
+          })
+          .end(function (err, res) {
+            assert.equal(res.status, 200);
+            assert.equal(res.body.initNum, 1);
+            assert.equal(res.body.initUnit, 'kg');
+            assert.approximately(res.body.returnNum, 2.20462, 0.1);
+            assert.equal(res.body.returnUnit, 'lbs');
+            done();
+          });
+      });
 
     });
 

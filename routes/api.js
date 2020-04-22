@@ -45,16 +45,16 @@ module.exports = function (app) {
         // TODO - unit tests implementation
         // [x] initNum
         // [x] initUnit
-        // [ ] returnNum
+        // [x] returnNum
         // [x] getReturnUnit
         // [x] spellOutUnit
         // [x] getString
         // TODO - functional tests implementation
-        // [ ] inplement functional test 1
+        // [x] inplement functional test 1
         // [x] inplement functional test 2
         // [x] inplement functional test 3
         // [x] inplement functional test 4
-        // [ ] inplement functional test 5
+        // [x] inplement functional test 5
 
         if(initUnit === false && initNum === false){
           if(!process.env === 'development') console.log('[invalid number and unit]') // !DEBUG
